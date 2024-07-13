@@ -4,21 +4,15 @@
 #include <iostream>
 #include <sstream>
 #include <unistd.h> // For STDIN_FILENO, STDOUT_FILENO, dup, dup2, and close
-#include <vector>
-#include <algorithm>
 using namespace std;
 
 void runTest() {
     // Test case 1
-    string input1 = "75.34\n80\n";
-    vector<string> expected_outputs1 = {"4.66", "4", "2", "1", "1", "1"};
-
-    // Test case 2
-    string input2 = "39.67\n50\n";
-    vector<string> expected_outputs2 = {"10.33", "10", "1", "0", "1", "3"};
+    string input1 = "76\n80\n100\n43\n68\n70\n79\n";
+    string expected_output1 = "74";
 
     // Helper function to run a single test case
-    auto runSingleTest = [](const string& input, const vector<string>& expected_outputs) {
+    auto runSingleTest = [](const string& input, const string& expected_output) {
         // Create temporary files for input and output redirection
         FILE *input_file = tmpfile();
         FILE *output_file = tmpfile();
@@ -38,7 +32,7 @@ void runTest() {
         dup2(output_fd, STDOUT_FILENO);
 
         // Call the original program's main function
-        int result = system("./hw5-15");
+        int result = system("./lab7-1");
 
         // Restore stdin and stdout
         dup2(saved_stdin_fd, STDIN_FILENO);
@@ -65,26 +59,20 @@ void runTest() {
         fclose(output_file);
 
         // Debugging information
-        cout << "Expected Outputs:\n";
-        for (const auto& output : expected_outputs) {
-            cout << output << endl;
-        }
+        cout << "Expected Output:\n" << expected_output << endl;
         cout << "Actual Output:\n" << actual_output << endl;
 
-        // Compare the actual output to the expected values
-        for (const auto& expected_output : expected_outputs) {
-            if (actual_output.find(expected_output) == string::npos) {
-                cout << "Test Failed: Output does not contain expected value: " << expected_output << endl;
-                exit(-1);
-            }
+        // Compare the actual output to the expected value
+        if (actual_output.find(expected_output) == string::npos) {
+            cout << "Test Failed: Output does not contain expected value" << endl;
+            exit(-1);
         }
 
         cout << "Test passed!" << endl;
     };
 
     // Run the individual test cases
-    runSingleTest(input1, expected_outputs1);
-    runSingleTest(input2, expected_outputs2);
+    runSingleTest(input1, expected_output1);
 }
 
 int main() {
