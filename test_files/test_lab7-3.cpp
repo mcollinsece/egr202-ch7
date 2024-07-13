@@ -71,7 +71,7 @@ void runTest() {
             exit(-1);
         }
 
-        cout << "Output test passed!" << endl;
+        cout << "Test passed!" << endl;
     };
 
     // Check if the code contains a while loop

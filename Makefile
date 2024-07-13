@@ -16,7 +16,7 @@ lab7-3: lab7-3.cpp
 lab7-4: lab7-4.cpp
 	$(CXX) $(CXXFLAGS) lab7-4.cpp -o lab7-4
 
-lab7-1: lab7-6.cpp
+lab7-6: lab7-6.cpp
 	$(CXX) $(CXXFLAGS) lab7-6.cpp -o lab7-6
 
 hw7-16: hw7-16.cpp
