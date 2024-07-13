@@ -1,6 +1,3 @@
-# egr202-ch7-solutions-
-
-
 # These assignments directly correspond with assignments in your book. For further details and references, please refer to the approriate sections in your textbook, and if you need further clarification, please reach out.
 
 # Lab 7-1 Stop and Analyze
